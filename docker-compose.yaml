@@ -7,6 +7,5 @@ services:
     container_name: template
     volumes:
       - .:/project/.
-      # - /app/renv
     working_dir: /project
     tty: true
