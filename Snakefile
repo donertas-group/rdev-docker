@@ -13,12 +13,10 @@ rule help:
         "sed -n 's/^##//p' {input}"
 
 
-rule build_tse:
+rule knit:
     input:
-        phyloseq="data/processed/phyloseq_obj_20210215.rds",
-        metadata="data/metadata/metadata.csv"
+        "notebooks/main.Rmd",
     output:
-        "data/processed/tse_raw.rds"
-    script: 
-        "scripts/build_tse.R"
-
+        "notebooks/main.html",
+    shell:
+        "Rscript -e 'rmarkdown::render(\"{input}\")'"
