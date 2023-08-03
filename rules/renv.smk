@@ -3,20 +3,12 @@
 # All rules related to renv.
 
 
-# ## renv_install: Install renv locally
-# rule renv_install:
-#     output:
-#         directory("renv"),
-#     shell:
-#         "R -e 'install.packages(\"renv\")'"
-
-
 ## renv_init: Initialize packages
 rule renv_init:
     output:
         "renv.lock",
         "renv/activate.R",
-        ".Rprofile"
+        ".Rprofile",
     shell:
         "R -q -e 'renv::init(bioconductor=\"3.17\")'"
 
