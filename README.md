@@ -11,6 +11,13 @@ Mark Olenik <mark.olenik@gmail.com>
 * Podman Compose
 * VSCode
 
+## Containerized Development in VSCode
+**Step 1**: Build the image with `podman-compose build project`.\
+**Step 2**: Start container in the background `podman-compose up -d project`.\
+**Step 3**: Install the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) VSCode extension.\
+**Step 4**: Attach to container by calling command "Dev Containers: Attach to Running Container".\
+**Step 5**: Start coding.
+
 ## Podman Commands
 ```bash
 # Build image
@@ -29,10 +36,3 @@ podman-compose up -d project
 podman-compose down
 
 ```
-
-## Containerized Development in VSCode
-**Step 1**: Build the image with `podman-compose build project`.\
-**Step 2**: Start container in background `podman-compose up -d project`.\
-**Step 3**: Install the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) VSCode extension.\
-**Step 4**: Attach to container by calling command "Dev Containers: Attach to Running Container".\
-**Step 5**: Start coding.
