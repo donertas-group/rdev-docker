@@ -1,11 +1,13 @@
 version: '3'
 services:
-  dev:
+  project:
     build:
       context: .
-    image: template
-    container_name: template
+    image: blueprint
+    container_name: blueprint
+    # Mount stuff. Is there a more elegant way to do this?
     volumes:
-      - .:/project/.
-    working_dir: /project
+      - .:/root/project
+    working_dir: /root/project
     tty: true
+    command: bash
