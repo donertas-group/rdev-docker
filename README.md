@@ -7,8 +7,8 @@ This is a work in progress.  It might not be ready for use.
 Mark Olenik <mark.olenik@gmail.com>
 
 ## Software Prerequisites
-* Podman
-* Podman Compose
+* Podman (Docker)
+* Podman Compose (Docker Compose)
 * VSCode
 
 ## Containerized Development in VSCode
