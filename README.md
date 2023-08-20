@@ -1,7 +1,13 @@
 # README
 
-## Contact
-Mark Olenik <mark.olenik@gmail.com>
+A Docker image for R development with a focus on reproducibility.
+The image is based on the Bioconductor [Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker), and runs a Ubuntu 22.04 and R 4.3.0.
+Includes the following packages:
+* `tidyverse`
+* `mia + miaViz`
+
+## Usage
+TODO
 
 ## Build & Push to GHCR
 To build & push either use the GitHub workflow or do it manually.
@@ -42,3 +48,6 @@ Option 2: Or using Docker's `buildx` (doesn't work with `podman` yet):
 podman buildx build --push --manifest ghcr.io/markolenik/rdev-docker:manifest-latest --platform linux/amd64,linux/arm64 -t ghcr.io/markolenik/rdev-docker:latest .
 
 ```
+
+## Contact
+Mark Olenik <mark.olenik@gmail.com>
