@@ -20,35 +20,29 @@ gh auth login
 gh workflow run build-push-image
 ```
 
-<details>
-  <summary>Or build locally ...</summary>
-    Option 1: Works with `podman`:
+Note: Because `mia` has to be compiled from source, the build process takes a while.
 
+<details>
+  <summary>Or build locally</summary>
+    
     ```bash
     # Build images
-    docker build --platform linux/arm64 -t ghcr.io/<namespace>/<package>:<tag>-arm64 .
-    docker build --platform linux/amd64 -t ghcr.io/<namespace>/<package>:<tag>-amd64 .
+    docker build --platform linux/arm64 -t ghcr.io/donertas-group/rdev-docker:<tag>-arm64 .
+    docker build --platform linux/amd64 -t ghcr.io/donertas-group/rdev-docker:<tag>-amd64 .
 
     # Push images
-    docker push ghcr.io/<namespace>/<package>:<tag>-arm64
-    docker push ghcr.io/<namespace>/<package>:<tag>-amd64
+    docker push ghcr.io/donertas-group/rdev-docker:<tag>-arm64
+    docker push ghcr.io/donertas-group/rdev-docker:<tag>-amd64
 
     # Create manifest
-    docker manifest create ghcr.io/<namespace>/<package>:<tag> ghcr.io/<namespace>/<package>:<tag>-arm64 ghcr.io/<namespace>/<package>:<tag>-amd64
+    docker manifest create ghcr.io/donertas-group/rdev-docker:<tag> ghcr.io/donertas-group/rdev-docker:<tag>-arm64 ghcr.io/donertas-group/rdev-docker:<tag>-amd64
 
     # Push manifest
-    docker manifest push ghcr.io/<namespace>/<package>:<tag>
-
+    docker manifest push ghcr.io/donertas-group/rdev-docker:<tag>
     ```
 
-    Option 2: Or using Docker's `buildx` (doesn't work with `podman` yet):
-
-    ```bash
-    # Build multi-arch image and write manifest
-    podman buildx build --push --manifest ghcr.io/markolenik/rdev-docker:manifest-latest --platform linux/amd64,linux/arm64 -t ghcr.io/markolenik/rdev-docker:latest .
-
-    ```
 </details>
+
 
 ## Contact
 Mark Olenik <mark.olenik@gmail.com>
