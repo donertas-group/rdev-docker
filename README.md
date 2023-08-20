@@ -1,38 +1,44 @@
 # README
 
-## WARNING
-This is a work in progress.  It might not be ready for use.
-
 ## Contact
 Mark Olenik <mark.olenik@gmail.com>
 
-## Software Prerequisites
-* Podman (Docker)
-* Podman Compose (Docker Compose)
-* VSCode
-
-## Containerized Development in VSCode
-**Step 1**: Build the image with `podman-compose build project`.\
-**Step 2**: Start container in the background `podman-compose up -d project`.\
-**Step 3**: Install the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) VSCode extension.\
-**Step 4**: Attach to container by calling command "Dev Containers: Attach to Running Container".\
-**Step 5**: Start coding.
-
-## Podman Commands
+## Build & Push to GHCR
+To build & push either use the GitHub workflow or do it manually.
+### GitHub Workflow
+Trigger the workflow using the GitHub CLI:
+    
 ```bash
-# Build image
-podman-compose build project
+# Login to GitHub
+gh auth login
 
-# Rebuild without cache
-podman-compose build --no-cache project
+# Trigger workflow
+gh workflow run build-push-image
+```
 
-# Start container and enter bash
-podman-compose up project
+### Manually 
+Option 1: Works with `podman`:
 
-# Start container in background
-podman-compose up -d project
+```bash
+# Build images
+docker build --platform linux/arm64 -t ghcr.io/<namespace>/<package>:<tag>-arm64 .
+docker build --platform linux/amd64 -t ghcr.io/<namespace>/<package>:<tag>-amd64 .
 
-# Stop container
-podman-compose down
+# Push images
+docker push ghcr.io/<namespace>/<package>:<tag>-arm64
+docker push ghcr.io/<namespace>/<package>:<tag>-amd64
+
+# Create manifest
+docker manifest create ghcr.io/<namespace>/<package>:<tag> ghcr.io/<namespace>/<package>:<tag>-arm64 ghcr.io/<namespace>/<package>:<tag>-amd64
+
+# Push manifest
+docker manifest push ghcr.io/<namespace>/<package>:<tag>
+
+```
+Option 2: Or using Docker's `buildx` (doesn't work with `podman` yet):
+
+```bash
+# Build multi-arch image and write manifest
+podman buildx build --push --manifest ghcr.io/markolenik/rdev-docker:manifest-latest --platform linux/amd64,linux/arm64 -t ghcr.io/markolenik/rdev-docker:latest .
 
 ```
