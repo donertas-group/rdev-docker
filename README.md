@@ -1,5 +1,5 @@
 # README
-[![Build Docker image](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml/badge.svg?event=registry_package)](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml)
+[![Build Docker image](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml/badge.svg)](https://github.com/donertas-group/rdev-docker/actions/workflows/build-image.yml)
 
 A Docker image for R development with a focus on reproducibility.
 The image is based on the Bioconductor [Docker image](https://hub.docker.com/r/bioconductor/bioconductor_docker), and runs a Ubuntu 22.04 and R 4.3.0.
