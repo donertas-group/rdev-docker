@@ -18,7 +18,7 @@ Trigger the workflow using the GitHub CLI:
 gh auth login
 
 # Trigger workflow
-gh workflow run build-push-image
+gh workflow run build-image.yml
 ```
 
 Note: Because `mia` has to be compiled from source, the build process takes a while.
